@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/depikt/static/css/main.2860a69e.chunk.css",
+    "main.js": "/depikt/static/js/main.c1745d54.chunk.js",
+    "main.js.map": "/depikt/static/js/main.c1745d54.chunk.js.map",
+    "runtime-main.js": "/depikt/static/js/runtime-main.6b52a9e2.js",
+    "runtime-main.js.map": "/depikt/static/js/runtime-main.6b52a9e2.js.map",
+    "static/js/2.9673b26c.chunk.js": "/depikt/static/js/2.9673b26c.chunk.js",
+    "static/js/2.9673b26c.chunk.js.map": "/depikt/static/js/2.9673b26c.chunk.js.map",
+    "index.html": "/depikt/index.html",
+    "precache-manifest.784872315aba2c435af9c5472ceea2ca.js": "/depikt/precache-manifest.784872315aba2c435af9c5472ceea2ca.js",
+    "service-worker.js": "/depikt/service-worker.js",
+    "static/css/main.2860a69e.chunk.css.map": "/depikt/static/css/main.2860a69e.chunk.css.map",
+    "static/js/2.9673b26c.chunk.js.LICENSE": "/depikt/static/js/2.9673b26c.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6b52a9e2.js",
+    "static/js/2.9673b26c.chunk.js",
+    "static/css/main.2860a69e.chunk.css",
+    "static/js/main.c1745d54.chunk.js"
+  ]
+}
