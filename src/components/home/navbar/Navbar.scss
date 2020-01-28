@@ -1,0 +1,130 @@
+@import '../../../styles.scss';
+
+
+a:hover{
+    color: black;
+}
+
+.link{
+    text-decoration: none;
+    color: white;
+    font-size: 1.3rem;
+    background-color: transparent;
+    border: none;
+}
+
+.link:hover{
+    color: black;
+}
+
+.navbar{
+    @include flexRow(flex-start, center);
+    padding: 1rem 0;
+    background-color: $main-color;
+    margin: 0;
+    position: fixed;
+    z-index: 6;
+    top: 0;
+    width: 100%;
+
+}
+
+.logo{
+    margin: .55rem;
+    color: rgb(167, 166, 166);
+}
+
+
+.searchGroup{
+    position: relative;
+    width: 70%;
+    display: flex;
+    appearance: none;
+}
+
+.searchInput{
+    padding: 1rem;
+    flex-grow: 1;
+    border: none;
+    border-radius: 5px 0px 0px 5px;
+    appearance: none;
+}
+
+
+
+.searchButton{
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgb(226, 226, 226);
+    color: rgb(167, 166, 166);
+    width: 2.2rem;
+    border: none;
+    cursor: pointer;
+    appearance: none;
+}
+
+.uploadLink{
+    margin: 1rem;
+    color: rgb(167, 166, 166);
+}
+
+.user-menu{
+    @include flexCol(center,center);
+    position: absolute;
+    right: 0.3rem;
+    top: 4.5rem;
+    background-color: rgb(112, 184, 187);
+    padding: 1.6em;
+    border-radius: 20px 0 20px 10px;
+    transform-origin: top right;
+    transform: rotate(-90deg);
+    transition: 1s;
+    opacity: 0;
+}
+
+#dropdown{
+    opacity: 1;
+    transform: rotate(0);
+    transition: 1s ;
+}
+
+
+.profileLink{
+    margin: 1rem;
+    color: rgb(167, 166, 166);
+    cursor: pointer;
+}
+
+.profileLink:hover{
+    color: black;
+}
+
+
+
+
+@media only screen and (min-width: 960px){
+
+    .logo{
+        margin: 0 2rem;
+    }
+
+    .uploadLink{
+        margin-left: auto;
+    }
+
+    .profileLink{
+        margin: 0 3rem;
+    }
+
+    .searchButton{
+        width: 4rem;
+    }
+
+    p{
+        margin: 2rem;
+    }
+}
+
+

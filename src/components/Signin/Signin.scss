@@ -1,0 +1,69 @@
+@import "../../styles.scss";
+
+.sign-in h1{
+    text-align: center;
+    background-color: $main-color;
+    margin: 0;
+}
+.sign-in h3 {
+    margin: 2rem 0 1rem 0;
+}
+
+.valid{
+    opacity: 0;
+}
+.invalid{
+    opacity: 1;
+    background-color: rgb(245, 169, 169);
+    border: 1px solid rgb(218, 85, 67);
+    padding: 0.4rem;
+    transition: ease 0.5s;
+    
+}
+
+.sign-in{
+    min-height: 100vh;
+    @include flexCol(center, center);
+    background-color: rgb(233, 232, 232);
+}
+//background-color: rgb(48, 95, 139);
+
+.form-wrapper{
+    background-color: white;
+    @include flexCol(center, center);
+    flex-direction: column;
+    border-radius: 10px;
+    min-width: 320px;
+    padding: 1.4em 0;
+}
+
+.signin-form{
+    width: 80%;
+    @include flexCol(center, center);
+    flex-direction: column;
+}
+
+.signin-form input{
+    @include input();
+    box-sizing: border-box;
+}
+
+.btn{
+    width: 100%;
+    background-color: $main-color;
+    color: white;
+}
+
+button:hover{
+    color: black;
+    cursor: pointer;
+}
+
+p{
+    margin: 0;
+    font-weight: bold;
+}
+
+
+
+

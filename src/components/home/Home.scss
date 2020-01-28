@@ -1,0 +1,151 @@
+@import '../../styles.scss';
+
+.imageClicked{
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(117, 117, 117, 0.589);
+    @include flexCol(center,center);
+    overflow-y: scroll;
+}
+
+.image-form{
+    background-color: white;
+    padding: 2em;
+}
+
+.image-container{
+    margin-top: 10rem;
+    max-width: 300px;
+}
+
+.image{
+    width: 100%;
+    max-height: 700px;
+}
+
+.image-grp{
+    margin-top: 5rem;
+    padding-bottom: 5em;
+}
+
+.btn-grp{
+    display: flex;
+}
+
+
+.uploaded{
+    font-weight: bold;
+    position: fixed;
+    background-color: $main-color;
+    right: 0px;
+    bottom: 0px;
+    padding: 1.4em;
+    margin: 1em;
+    transform: translateY(100px);
+    animation: move 3s;
+}
+
+@keyframes move{
+    from{
+        transform: translateY(100px);
+    }
+    50%{
+        transform: translateY(0px);
+    }
+    to{
+        transform: translateY(100px);
+    }
+}
+
+
+.hide{
+    display: none;
+    opacity: 0;
+}
+
+
+.image-container{
+    position: relative;
+}
+
+.author{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: white;
+}
+
+.fav-page{
+    margin-top: 10rem;
+    text-align: center;
+    @include flexCol(center, center)
+}
+
+.fav-images{
+    margin: 2em;
+    display: grid;
+    grid-template-columns: repeat( auto-fill, minmax(100px, 1fr));
+    gap: 5px;
+}
+
+.fav-images img{
+    width: 100%;
+}
+
+.fav-image-card{
+    position: relative;
+}
+
+.remove-btn{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    appearance: none;
+    background-color: $main-color;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    padding: 1em;
+}
+
+
+
+@media only screen and (max-height: 400px){
+    .image-container{
+        margin-top: 18rem;
+        max-width: 800px;
+    }
+
+    .image-display{
+        max-height: 300px;
+    }
+}
+
+
+
+@media only screen and (min-width: 500px){
+
+    .fav-images{
+        grid-template-columns: repeat( auto-fill, minmax(200px, 1fr));
+        gap: 10px;
+    }
+
+}
+@media only screen and (min-width: 800px){
+
+    .fav-images{
+        grid-template-columns: repeat( auto-fill, minmax(300px, 1fr));
+        gap: 10px;
+    }
+
+}
+@media only screen and (min-width: 768px){
+    .image-container{
+        margin-top: 8rem;
+    }  
+}
+

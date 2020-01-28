@@ -1,0 +1,62 @@
+$font-one: 'Oswald', sans-serif;
+$font-two: 'Titillium Web', sans-serif;
+$main-color: rgb(128, 223, 215);
+
+body{
+    padding: 0;
+    margin: 0;
+}
+
+*{
+    font-family: $font-one;
+    appearance: none;
+    outline: none;
+}
+
+
+
+
+@mixin flexRow($justify, $vertical) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $vertical;
+    flex-direction: row;
+}
+
+@mixin flexCol($justify, $vertical) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $vertical;
+    flex-direction: column;
+}
+
+.flexRow{
+    @include flexRow(flex-start, center);
+}
+
+
+.flexCol{
+    @include flexCol(center, center);
+}
+
+@mixin input {
+    padding: 1em;
+    margin: 0.5rem;
+    width: 100%;
+}
+
+.btn{
+    padding: 1rem;
+    margin: 1.4rem 0 1.4rem 0;
+    cursor: pointer;
+    background-color: $main-color;
+    border: none;
+    border-radius: 5px;
+    appearance: none;
+}
+
+.btn:active{
+    background-color: rgb(119, 206, 199);
+    appearance: none;
+}
+

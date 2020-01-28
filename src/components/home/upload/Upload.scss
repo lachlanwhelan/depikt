@@ -1,0 +1,197 @@
+@import '../../../styles.scss';
+
+
+*{
+    appearance: none;
+    outline: none;
+}
+
+.valid{
+    opacity: 0;
+}
+.invalid{
+    opacity: 1;
+    background-color: rgb(245, 169, 169);
+    border: 1px solid rgb(218, 85, 67);
+    padding: 0.4rem;
+    transition: ease 0.5s;
+    
+}
+
+.show{
+    display: block;
+}
+
+.hide{
+    display: none;
+}
+
+.upload-page{
+    margin-top: 12rem;
+    height: 100vh;   
+    @include flexCol(center, center)
+}
+ 
+.upload-form{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 6rem;
+    height: 100vh;
+}
+
+.file{
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    height: 2rem;
+}
+
+.fileUpload{
+    width: 100%;
+    height: 50px;
+}
+
+.file-custom{
+position: absolute;
+top: 0;
+right: 0px;
+left: 0;
+z-index: 2;
+height: 2.5rem;
+padding: .5rem 1rem;
+line-height: 1.5;
+color:
+#555;
+background-color:
+$main-color;
+border: .075rem solid
+#ddd;
+border-radius: .25rem;
+box-shadow: inset 0 .2rem .4rem
+rgba(0,0,0,.05);
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+
+.file-custom:before{
+    position: absolute;
+    top: -.075rem;
+    right: -.075rem;
+    bottom: -.075rem;
+    z-index: 6;
+    display: block;
+    content: "Upload";
+    height: 2.5rem;
+    padding: .5rem 1rem;
+    line-height: 1.5;
+    color:
+    #555;
+    background-color:
+   $main-color;
+    border: .075rem solid
+    #ddd;
+    border-radius: 0;
+}
+
+
+.file-custom:after{
+    position: absolute;
+    top: -.075rem;
+    left: -.075rem;
+    right: 4.5rem;
+    bottom: -.075rem;
+    z-index: 6;
+    display: block;
+    content: "choose file";
+    height: 2.5rem;
+    padding: .5rem 1rem;
+    line-height: 1.5;
+    color:
+    #555;
+    background-color:
+    $main-color;
+    border-radius: 0;
+}
+
+img{
+    image-orientation: from-image;
+    width: 100%;
+    height: 100%;
+}
+
+.upload-form{
+    width: 80%;
+}
+
+
+.preview-img{
+    height: 22rem;
+    background-color: rgb(224, 224, 224);
+}
+
+
+
+.upload-form input[type='text']{
+    padding: 1rem;
+    margin-top: 0.6rem;
+}
+
+
+#btn{
+    margin: 2rem 0 ;
+    padding: 2rem;
+}
+
+
+@media only screen and (max-height: 400px){
+    .upload-page{
+        margin-top: 25rem;
+    }
+     
+}
+
+
+@media only screen and (min-width: 600px){
+
+    h1{
+        font-size: 3rem;
+    }
+    .upload-page{
+        height: 100vh;   
+        @include flexCol(center, center)
+    }
+
+    .upload-form{
+        width: 80%;
+    }
+
+    .preview-img{
+        
+        height: 28rem;
+        background-color: rgb(224, 224, 224);
+        
+    }
+}
+
+@media only screen and (min-width: 800px){
+    .upload-page{
+        margin-top: 10rem;
+    }
+    .preview-img{
+        height: 30rem;
+    }
+}
+
+
+@media only screen and (min-width: 1000px){
+
+    .upload-form{
+        width: 60%;
+    }
+
+    .preview-img{
+        height: 35rem;
+    }
+}
