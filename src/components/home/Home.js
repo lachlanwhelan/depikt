@@ -24,43 +24,51 @@ class Home extends Component{
 
 
     addImage = (image) => {
-        //need to send image file with formdata not json
-        const formdata = new FormData()
-
-        formdata.append('blob', image.image, `${image.image.name}`);
-        formdata.append('tag', image.tag);
-        formdata.append('category', image.category);
-        formdata.append('id',auth.user.id);
-
-        fetch('https://rocky-earth-38750.herokuapp.com/upload', {
+        fetch('https://stark-ridge-74307.herokuapp.com/upload', {
             method: 'post',
-            body: formdata
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                url: image.url,
+                tag: image.tag,
+                category: image.category,
+                id: auth.user.id
+            })
         })
         .then(response => response.json())
         .then(data => {
             if(data){
+                this.props.history.push('/home');
+
                 this.setState({
                     imageUploaded: true
                 })
-                this.props.history.push('/home');
-                console.log(this.state.imageUploaded);
+
+                setTimeout(() => {
+                    this.setState({
+                        imageUploaded: false
+                    })
+                }, 5000);
+
+                this.getImages();
             }else{
                 console.log(data);
             }
-        })
+        }) 
     }
 
     deleteImage = (image) => {
-        fetch('https://rocky-earth-38750.herokuapp.com/delete', {
+        fetch('https://stark-ridge-74307.herokuapp.com/delete', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                id: image.id
+                id: image.id,
+                fileName: image.url.split('/')[3]
             })
         })
         .then(response => response.json())
         .then(message => {
             console.log(message);
+            this.getImages();
         })
     }
 
@@ -85,7 +93,7 @@ class Home extends Component{
     handleSearch = (value) => {
         if(value){
             //return images with tags that match search value
-            fetch(`https://rocky-earth-38750.herokuapp.com/images/search?q=${value.toLowerCase()}`)
+            fetch(`https://stark-ridge-74307.herokuapp.com/images/search?q=${value.toLowerCase()}`)
             .then(response => response.json())
             .then(images => {
                 this.setState({
@@ -100,15 +108,10 @@ class Home extends Component{
     }
 
     handleMenuClick = () => {
-        this.state.menu ? 
-        this.setState({
-            menu: false
-        })
-        :
-        this.setState({
-            menu: true
-        })
 
+        this.setState(state => ({
+            menu: !state.menu
+        }))
     }
 
     handlePageClick = () => {
@@ -145,19 +148,13 @@ class Home extends Component{
 
 
     getImages = () => {
-        fetch('https://rocky-earth-38750.herokuapp.com/images')
+        fetch('https://stark-ridge-74307.herokuapp.com/images')
         .then(response => response.json())
         .then(data => {
             this.setState({
                 initialImages: [...data]
             })
         })
-    }
-
-
-    componentDidUpdate(){
-        //fetch images and store in state after updates/uploads
-        this.getImages();
     }
 
     componentDidMount(){
@@ -183,11 +180,11 @@ class Home extends Component{
              }/>
 
             <Route path='/home/upload' render={() =>
-             <Upload addImage={this.addImage}/>
+             <Upload addImage={this.addImage} handlePageClick={this.handlePageClick}/>
              }/>
 
             <Route path='/home/profile' render={() => 
-            <Profile initialImages={this.state.initialImages} deleteImage={this.deleteImage}/>
+            <Profile initialImages={this.state.initialImages} deleteImage={this.deleteImage} handlePageClick={this.handlePageClick}/>
             }/>
             <div onClick={this.handleCancelImage} className={this.state.imageUrl ? 'imageClicked' : 'hide'}>
             <div className='image-grp'>

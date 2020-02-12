@@ -1,6 +1,6 @@
 import React from 'react';
 import auth from '../../../Authentication';
-
+import loader from '../../../assets/loader.gif';
 
 const UploadForm = ({handleSubmit, handleFileChange, handleChange, url, isValid, loading}) => {
     return(
@@ -39,10 +39,15 @@ const UploadForm = ({handleSubmit, handleFileChange, handleChange, url, isValid,
         required
         />
 
-        <input id='btn' className='btn' type='submit' value='Upload' required onClick={(e) => {
-            handleSubmit(e);
-        }}/>
-        <span className={loading ? 'show': 'hide'}>Loading...</span>
+        <div className='upload-btn'>
+            <input id='btn' className='btn' type='submit' value='Upload' required onClick={(e) => {
+                handleSubmit(e);
+            }}/>
+            <div className={loading ? 'show': 'hide'}>
+                <img src={loader} alt='loader'/>
+            </div>
+        </div>
+
 
     </form>  
     )

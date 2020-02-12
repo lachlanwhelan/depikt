@@ -18,8 +18,23 @@
     
 }
 
+.upload-btn{
+    position: relative;
+}
+
+
+.btn::-moz-focus-inner {
+    border: 0;
+  }
+  
+  
+
 .show{
     display: block;
+    position: absolute;
+    top: 50px;
+    right: 5px;
+    max-width: 50px;
 }
 
 .hide{

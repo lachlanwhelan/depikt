@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import UploadForm from './UploadForm';
-import imageCompression from 'browser-image-compression';
 import './Upload.scss';
 
 
@@ -9,7 +8,7 @@ class Upload extends Component{
         super(props);
 
         this.state = {
-            image: {},
+            file: '',
             url: '',
             tag: '',
             category:'',
@@ -18,39 +17,60 @@ class Upload extends Component{
         }
     }
 
+    uploadFile = (file, signedRequest, url) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('PUT', signedRequest);
+        xhr.onreadystatechange = () => {
+          if(xhr.readyState === 4){
+            if(xhr.status === 200){
+                this.setState({
+                        url: url
+                    }, () => {
+                        this.props.addImage(this.state)
+                    }
+                )
+            }
+            else{
+              alert('Could not upload file.');
+            }
+          }
+        };
+        xhr.send(file);
+    }
+
+
+    getSignedRequest = (file) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', `https://stark-ridge-74307.herokuapp.com/sign-s3?file-name=${file.name.replace(/\s/,'-')}&file-type=${file.type}`);
+        xhr.onreadystatechange = () => {
+          if(xhr.readyState === 4){
+            if(xhr.status === 200){
+                const response = JSON.parse(xhr.responseText);
+              this.uploadFile(file, response.signedRequest, response.url);
+            }
+            else{
+              alert('Could not get signed URL.');
+            }
+          }
+        };
+        xhr.send();
+    }
+
     handleFileChange = (e) => {
         //create fileReader instance
         let reader = new FileReader();
         //get file
         let file = e.target.files[0];
 
-        const options = {
-            maxSizeMB: 1,
-            maxWidthOrHeight: 1920,
-            useWebWorker: false
-        }
+        reader.readAsDataURL(file);
 
         reader.onloadend = () => {
             this.setState({
-                selectedFile:file,
-                url: reader.result //returns base64 url
-            })
+                file: file,
+                url: reader.result
+            })   
         }
-
-        imageCompression(file, options)
-        .then((compressedFile) => {
-            this.setState({
-                image: compressedFile
-            })
-            reader.readAsDataURL(compressedFile);
-        })
-        .catch(err => {
-            console.log(err.message);
-            
-        }) 
-    }
-
-    
+    }  
     
 
     handleChange = (event) => {
@@ -58,7 +78,6 @@ class Upload extends Component{
         this.setState({
             [name]: value
         })
-        
     }
 
     handleSubmit = (e) => {
@@ -74,16 +93,18 @@ class Upload extends Component{
             this.setState({
                 isValid: true
             })
-            this.props.addImage(this.state)
+
+            this.getSignedRequest(this.state.file);
+
             if(this.state.loading === false){
-                this.setState({
-                    loading: true
-                })
+                    this.setState({
+                        loading: true
+                    })
             }else{
-                this.setState({
-                    loading: false
-                })
-            }
+                    this.setState({
+                        loading: false
+            })
+        }
 
         }
     }
@@ -91,7 +112,7 @@ class Upload extends Component{
     render(){
         return(
 
-            <div className='upload-page'>
+            <div className='upload-page' onClick={this.props.handlePageClick}>
             <h1>Upload An Image</h1>
             <UploadForm handleSubmit={this.handleSubmit}
              handleChange={this.handleChange}

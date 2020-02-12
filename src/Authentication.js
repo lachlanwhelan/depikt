@@ -9,27 +9,9 @@ class Authentication {
         }
     }
 
-/*     async checkUser(){
-        const response = await fetch('http://localhost:8000/checkUser', {
-            method: 'get',
-            headers: new Headers({
-            Authorization: `bearer ${localStorage.getItem('token')}`
-            })
-        })
-
-        const userObject = await response.json();
-
-
-        this.user.id = userObject.authData.currentUser.id;
-        this.user.name = userObject.authData.currentUser.name;
-        this.user.email = userObject.authData.currentUser.email;
-
-        Promise.resolve(this.user);
-    } */
-
     async register(name, email, password){
         //consider try catch block
-        const response = await fetch('https://rocky-earth-38750.herokuapp.com/register', {
+        const response = await fetch('https://stark-ridge-74307.herokuapp.com/register', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -61,7 +43,7 @@ class Authentication {
     //await allows us to wait for the response of an asynchronous request
     //will return value only after promise is resolved
     //promise has three states: pending, fullfilled + rejected
-        const response = await fetch('https://rocky-earth-38750.herokuapp.com/signin', {
+        const response = await fetch('https://stark-ridge-74307.herokuapp.com/signin', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

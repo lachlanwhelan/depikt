@@ -20,6 +20,7 @@ const Images = ({initialImages, filteredImages, handlePageClick, handleOnImageCl
             </div>
         )
     }else{
+        console.log(filteredImages);
         return(
             <div className='image-page'>
             <div className='images'>

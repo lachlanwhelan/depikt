@@ -1,9 +1,9 @@
 import React from 'react';
 import './Profile.scss';
 import auth from '../../../Authentication';
-const Profile = ({initialImages, deleteImage}) => { 
+const Profile = ({initialImages, deleteImage, handlePageClick}) => { 
     return(
-        <div className='profile-page'>
+        <div className='profile-page' onClick={handlePageClick}>
             <div className='box-1'>
                 <h1>Details</h1>
                 <div className='profile-card'>
@@ -17,12 +17,12 @@ const Profile = ({initialImages, deleteImage}) => {
             <h1>Your uploaded images</h1>
                 <div className='image-uploads'>
                 {
-                    initialImages.map(item => {
-                        if(item.name === auth.user.name){
+                    initialImages.map(image => {
+                        if(image.name === auth.user.name){
                             return (
-                                <div className='image-card' key={item.id}>
-                                    <img src={item.url} alt={item.tag} id={item.id}/>
-                                    <button className='delete-btn' onClick={() => deleteImage(item)}>Delete</button>
+                                <div className='image-card' key={image.id}>
+                                    <img src={image.url} alt={image.tag} id={image.id}/>
+                                    <button className='delete-btn' onClick={() => deleteImage(image)}>Delete</button>
                                 </div>
                             )
                         }
